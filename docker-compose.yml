@@ -1,0 +1,44 @@
+version: "2"
+services:
+  app:
+    image: slavoutich/nextcloud:12.0.0.1
+    restart: always
+    mem_limit: 2048M
+    ports:
+      - "8080:80/tcp"
+    links:
+      - redis
+      - pgsql
+    volumes_from:
+      - storage
+    depends_on:
+      - redis
+      - pgsql
+  redis:
+    image: redis:3.2-alpine
+    restart: always
+    mem_limit: 128M
+    expose:
+      - 6379
+  pgsql:
+    image: postgres:9.6-alpine
+    restart: always
+    mem_limit: 256M
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: ***MY_POSTGRES_USER***
+      POSTGRES_PASSWORD: ***MY_POSTGRES_PASSWORD***
+      PGDATA: /var/lib/postgresql/data/9.6
+    volumes_from:
+      - storage
+  storage:
+    image: alpine:latest
+    command: /bin/sh
+    mem_limit: 128M
+    volumes:
+      - ***MY_DATA_FOLDER***/config:/var/www/html/config
+      - ***MY_DATA_FOLDER***/data:/var/www/html/data
+      - ***MY_DATA_FOLDER***/apps:/var/www/html/apps
+      - ***MY_DATA_FOLDER***/custom_apps:/var/www/html/custom_apps
+      - ***MY_DATA_FOLDER***/pgdb:/var/lib/postgresql/data
