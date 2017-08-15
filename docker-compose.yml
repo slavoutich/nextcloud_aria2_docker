@@ -39,6 +39,5 @@ services:
     volumes:
       - ***MY_DATA_FOLDER***/config:/var/www/html/config
       - ***MY_DATA_FOLDER***/data:/var/www/html/data
-      - ***MY_DATA_FOLDER***/apps:/var/www/html/apps
       - ***MY_DATA_FOLDER***/custom_apps:/var/www/html/custom_apps
       - ***MY_DATA_FOLDER***/pgdb:/var/lib/postgresql/data
