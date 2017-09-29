@@ -1,7 +1,7 @@
 version: "2"
 services:
   app:
-    image: slavoutich/nextcloud:12.0.0.1
+    image: slavoutich/nextcloud:12.0.3.0
     restart: always
     mem_limit: 2048M
     ports:
