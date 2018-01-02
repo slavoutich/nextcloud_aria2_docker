@@ -1,4 +1,4 @@
-FROM nextcloud:12.0.3-apache
+FROM nextcloud:12.0.4-apache
 
 RUN apt-get update && apt-get install -y \
   aria2 \
